@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Velvet — Checkout</title>
+<style>
+:root{--bg:#08090d;--card:#111319;--line:#292c35;--txt:#f7f7fa;--muted:#9da1ad;--pink:#ff397d;--pink2:#d91f62}
+*{box-sizing:border-box} body{margin:0;background:#08090d;color:var(--txt);font-family:Inter,Arial,sans-serif}
+header{height:72px;border-bottom:1px solid #20222a;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,5vw);background:#0b0c10}
+.logo{font-size:27px;letter-spacing:8px;font-weight:300}.safe{font-size:12px;color:#c9cbd2}
+main{max-width:1180px;margin:30px auto;padding:0 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+.panel{border:1px solid var(--line);background:var(--card);border-radius:20px;overflow:hidden}
+.left{padding:28px}.badge{display:inline-block;background:#30111e;color:#ff72a2;border:1px solid #7d2143;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800}
+h1{font-size:42px;line-height:1.05;margin:18px 0 12px}.pink{color:var(--pink)} p{color:var(--muted);line-height:1.55}
+.preview{height:300px;margin:22px 0 12px;border-radius:18px;overflow:hidden;position:relative;background:#17171b}
+.preview img{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);object-fit:cover;object-position:center 38%;filter:blur(24px) brightness(.58);transform:scale(1.08)}
+.preview:after{content:"🔒  PRÉVIA PROTEGIDA • CONTEÚDO 18+";position:absolute;inset:0;display:grid;place-items:center;background:#0005;font-size:14px;font-weight:800;letter-spacing:.5px;text-shadow:0 2px 12px #000}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.thumb{height:112px;border-radius:13px;overflow:hidden;position:relative;border:1px solid #34303a;background:#15151a}
+.thumb img{width:115%;height:115%;margin:-7%;object-fit:cover;filter:blur(16px) brightness(.52);transform:scale(1.08)}
+.thumb:after{content:"🔒";position:absolute;inset:0;display:grid;place-items:center;background:#0004;font-size:18px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px}.feature{padding:13px;border:1px solid #272a32;border-radius:13px;background:#0d0f14;font-size:13px}
+.right{padding:28px}.right h2{font-size:26px;margin:5px 0}.pricebox{border:1px solid #76213f;border-radius:16px;padding:17px;margin:18px 0;background:#171017}
+.price{font-size:38px;color:var(--pink);font-weight:900}.checks{font-size:13px;line-height:1.9;color:#d7d8de}
+label{font-size:13px;font-weight:700;display:block;margin:13px 0 7px}input{width:100%;padding:14px;border:1px solid #343741;border-radius:11px;background:#191b22;color:white;font-size:15px}
+button{width:100%;border:0;border-radius:11px;padding:15px;margin-top:17px;background:linear-gradient(90deg,var(--pink),var(--pink2));color:white;font-weight:900;font-size:15px;cursor:pointer}
+.pix{display:none;margin-top:18px;padding:16px;border:1px solid #343741;border-radius:14px}.pix.show{display:block}.qr{display:block;width:190px;height:190px;object-fit:contain;background:white;padding:7px;margin:10px auto;border-radius:10px}
+.copy{display:flex;gap:8px}.copy button{width:auto;margin:0}.steps{display:flex;justify-content:space-between;gap:8px;margin:18px 0;font-size:11px;color:#bbb}.legal{text-align:center;font-size:10px;color:#777;margin-top:15px}
+.whatsapp{margin-top:18px;padding:14px;border:1px solid #1e5938;background:#0e1b15;border-radius:13px;font-size:13px;color:#ccebd9}
+.msg{text-align:center;font-size:13px;margin-top:10px;color:#bfc1ca}.ok{color:#78e8a2}.err{color:#ff9aaa}
+@media(max-width:800px){main{grid-template-columns:1fr;margin-top:15px}.left,.right{padding:20px}h1{font-size:33px}.preview{height:220px}header{padding:0 18px}.safe{display:none}}
+</style>
+</head>
+<body>
+<header><div class="logo">VELVET</div><div class="safe">🔒 AMBIENTE SEGURO • DADOS PROTEGIDOS</div></header>
+<main>
+<section class="panel left">
+<span class="badge">🔞 ACESSO EXCLUSIVO +18</span>
+<h1>Conteúdo <span class="pink">exclusivo</span> em um só acesso.</h1>
+<p>Área digital reservada para maiores de 18 anos. Após a confirmação do pagamento, você recebe as instruções para acessar o canal exclusivo no WhatsApp.</p>
+<div class="preview"><img src="/assets/modelo-preview.jpeg" alt="Prévia protegida"></div>
+<div class="thumbs">
+  <div class="thumb"><img src="/assets/modelo-preview.jpeg" alt=""></div>
+  <div class="thumb"><img src="/assets/modelo-preview.jpeg" alt=""></div>
+  <div class="thumb"><img src="/assets/modelo-preview.jpeg" alt=""></div>
+</div>
+<div class="features">
+<div class="feature">🔒 Prévia protegida</div><div class="feature">⚡ Liberação após pagamento</div>
+<div class="feature">💬 Direcionamento ao WhatsApp</div><div class="feature">📱 Acesso pelo celular</div>
+</div>
+<div class="whatsapp"><b>💬 Acesso pelo WhatsApp</b><br>Pagamento confirmado → você será direcionado para as instruções de acesso ao WhatsApp exclusivo.</div>
+</section>
+
+<section class="panel right">
+<span class="badge">CHECKOUT SEGURO</span>
+<h2>Garanta seu acesso</h2>
+<p>Preencha seus dados e gere seu PIX.</p>
+<div class="pricebox"><div>Apenas</div><div class="price">R$ 19,00</div><div class="checks">✓ Pagamento único<br>✓ Confirmação automática<br>✓ Acesso digital<br>✓ Instruções para WhatsApp exclusivo</div></div>
+<form id="f">
+<label>Nome completo</label><input id="name" required placeholder="Seu nome completo">
+<label>CPF</label><input id="cpf" required maxlength="14" inputmode="numeric" placeholder="000.000.000-00">
+<button id="pay">GERAR PIX E FINALIZAR COMPRA</button>
+</form>
+<div id="pix" class="pix"><b>Seu PIX está pronto</b><div id="status" class="msg">Aguardando pagamento...</div><img id="qr" class="qr"><div class="copy"><input id="code" readonly><button type="button" id="copy">Copiar</button></div><div id="msg" class="msg"></div><a id="whatsBtn" href="#" target="_blank" rel="noopener" style="display:none;text-decoration:none"><button type="button" style="background:#159447">ABRIR WHATSAPP EXCLUSIVO</button></a><button id="simulateBtn" type="button" style="display:none;background:#333;margin-top:10px">SIMULAR PAGAMENTO APROVADO</button></div>
+<div class="steps"><span>① Pagamento via PIX</span><span>② Confirmação</span><span>③ Acesso</span></div>
+<div class="legal">Ao continuar, você declara ter 18 anos ou mais. Produto digital. O conteúdo e sua comercialização devem respeitar os termos do processador de pagamento e da plataforma de divulgação.</div>
+</section>
+</main>
+<script>
+const f=document.querySelector('#f'), nameInput=document.querySelector('#name'), cpf=document.querySelector('#cpf'), pay=document.querySelector('#pay'), pix=document.querySelector('#pix'),qr=document.querySelector('#qr'),code=document.querySelector('#code'),msg=document.querySelector('#msg'),statusEl=document.querySelector('#status'),whatsBtn=document.querySelector('#whatsBtn'),simulateBtn=document.querySelector('#simulateBtn'); let whatsappUrl='',devMode=false,currentTransactionId=''; fetch('/api/config').then(r=>r.json()).then(c=>{whatsappUrl=c.whatsappUrl||'';devMode=!!c.devMode;if(devMode) simulateBtn.style.display='block'}).catch(()=>{});
+cpf.oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');e.target.value=v}
+function qrs(v){if(!v)return'';if(v.startsWith('data:image')||v.startsWith('http'))return v;if(v.startsWith('base64:'))v=v.slice(7);return'data:image/png;base64,'+v}
+f.onsubmit=async e=>{e.preventDefault();pay.disabled=true;pay.textContent='GERANDO PIX...';msg.textContent='';try{let r=await fetch('/api/create-pix',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({payerName:nameInput.value.trim(),payerDocument:cpf.value.replace(/\D/g,'')})});let d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Não foi possível gerar o PIX.');qr.src=qrs(d.qrcodeUrl);code.value=d.copyPaste||'';pix.classList.add('show');msg.textContent='Escaneie o QR Code ou use o Copia e Cola.';if(d.transactionId){currentTransactionId=d.transactionId;poll(d.transactionId)}}catch(x){pix.classList.add('show');msg.textContent=x.message;msg.className='msg err'}finally{pay.disabled=false;pay.textContent='GERAR PIX E FINALIZAR COMPRA'}}
+document.querySelector('#copy').onclick=async()=>{await navigator.clipboard.writeText(code.value);document.querySelector('#copy').textContent='Copiado!';setTimeout(()=>document.querySelector('#copy').textContent='Copiar',1200)}
+simulateBtn.onclick=async()=>{
+  if(!devMode) return;
+  const id=currentTransactionId||'teste-local';
+  try{
+    const r=await fetch('/api/dev/simulate-paid',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({transactionId:id})
+    });
+    const d=await r.json();
+    if(!r.ok||!d.success) throw Error(d.error||'Falha na simulação.');
+    statusEl.textContent='Pagamento confirmado ✅';
+    statusEl.className='msg ok';
+    msg.textContent='Simulação concluída. Seu acesso foi liberado.';
+    if(whatsappUrl){
+      whatsBtn.href=whatsappUrl;
+      whatsBtn.style.display='block';
+    }
+  }catch(e){
+    msg.textContent=e.message;
+    msg.className='msg err';
+  }
+};
+
+function poll(id){
+  let n=0;
+  const check=async()=>{
+    n++;
+    try{
+      const r=await fetch('/api/status/'+encodeURIComponent(id));
+      const d=await r.json();
+      if(d.status==='COMPLETO'){
+        statusEl.textContent='Pagamento confirmado ✅';
+        statusEl.className='msg ok';
+        msg.textContent='Pagamento aprovado. Seu acesso foi liberado.';
+        if(whatsappUrl){
+          whatsBtn.href=whatsappUrl;
+          whatsBtn.style.display='block';
+        } else {
+          msg.textContent+=' Configure o WhatsApp no arquivo .env.';
+        }
+        return true;
+      }
+    }catch(e){}
+    return false;
+  };
+  check();
+  const t=setInterval(async()=>{
+    const done=await check();
+    if(done||n>120) clearInterval(t);
+  },5000);
+}
+</script>
+</body></html>
