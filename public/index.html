@@ -89,7 +89,14 @@ button{width:100%;border:0;border-radius:11px;padding:15px;margin-top:17px;backg
 const f=document.querySelector('#f'), nameInput=document.querySelector('#name'), cpf=document.querySelector('#cpf'), pay=document.querySelector('#pay'), pix=document.querySelector('#pix'),qr=document.querySelector('#qr'),code=document.querySelector('#code'),msg=document.querySelector('#msg'),statusEl=document.querySelector('#status'),whatsBtn=document.querySelector('#whatsBtn'),simulateBtn=document.querySelector('#simulateBtn'); let whatsappUrl='',devMode=false,currentTransactionId=''; fetch('/api/config').then(r=>r.json()).then(c=>{whatsappUrl=c.whatsappUrl||'';devMode=!!c.devMode;if(devMode) simulateBtn.style.display='block'}).catch(()=>{});
 cpf.oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');e.target.value=v}
 function qrs(v){if(!v)return'';if(v.startsWith('data:image')||v.startsWith('http'))return v;if(v.startsWith('base64:'))v=v.slice(7);return'data:image/png;base64,'+v}
-f.onsubmit=async e=>{e.preventDefault();pay.disabled=true;pay.textContent='GERANDO PIX...';msg.textContent='';try{let r=await fetch('/api/create-pix',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({payerName:nameInput.value.trim(),payerDocument:cpf.value.replace(/\D/g,'')})});let d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Não foi possível gerar o PIX.');qr.src=qrs(d.qrcodeUrl);code.value=d.copyPaste||'';pix.classList.add('show');msg.textContent='Escaneie o QR Code ou use o Copia e Cola.';if(d.transactionId){currentTransactionId=d.transactionId;poll(d.transactionId)}}catch(x){pix.classList.add('show');msg.textContent=x.message;msg.className='msg err'}finally{pay.disabled=false;pay.textContent='GERAR PIX E FINALIZAR COMPRA'}}
+f.onsubmit=async e=>{e.preventDefault();pay.disabled=true;pay.textContent='GERANDO PIX...';msg.textContent='';try{let r=await fetch('/api/create-pix',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({payerName:nameInput.value.trim(),payerDocument:cpf.value.replace(/\D/g,'')})});let d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Não foi possível gerar o PIX.');qr.src=qrs(d.qrcodeUrl);code.value=d.copyPaste||'';pix.classList.add('show');pix.classList.add('show');
+
+if (typeof fbq === 'function') {
+  fbq('track', 'InitiateCheckout', {
+    value: 19.90,
+    currency: 'BRL'
+  });
+}msg.textContent='Escaneie o QR Code ou use o Copia e Cola.';if(d.transactionId){currentTransactionId=d.transactionId;poll(d.transactionId)}}catch(x){pix.classList.add('show');msg.textContent=x.message;msg.className='msg err'}finally{pay.disabled=false;pay.textContent='GERAR PIX E FINALIZAR COMPRA'}}
 document.querySelector('#copy').onclick=async()=>{await navigator.clipboard.writeText(code.value);document.querySelector('#copy').textContent='Copiado!';setTimeout(()=>document.querySelector('#copy').textContent='Copiar',1200)}
 simulateBtn.onclick=async()=>{
   if(!devMode) return;
