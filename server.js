@@ -37,7 +37,7 @@ app.post('/api/create-pix', async (req, res) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        amount: 19,
+        amount: 2,
         description: 'Coleção Velvet - Acesso Digital 18+',
         payerName,
         payerDocument
