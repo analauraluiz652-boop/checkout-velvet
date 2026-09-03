@@ -86,7 +86,23 @@ button{width:100%;border:0;border-radius:11px;padding:15px;margin-top:17px;backg
 </section>
 </main>
 <script>
-const f=document.querySelector('#f'), nameInput=document.querySelector('#name'), cpf=document.querySelector('#cpf'), pay=document.querySelector('#pay'), pix=document.querySelector('#pix'),qr=document.querySelector('#qr'),code=document.querySelector('#code'),msg=document.querySelector('#msg'),statusEl=document.querySelector('#status'),whatsBtn=document.querySelector('#whatsBtn'),simulateBtn=document.querySelector('#simulateBtn'); let whatsappUrl='',devMode=false,currentTransactionId=''; fetch('/api/config').then(r=>r.json()).then(c=>{whatsappUrl=c.whatsappUrl||'';devMode=!!c.devMode;if(devMode) simulateBtn.style.display='block'}).catch(()=>{});
+const f=document.querySelector('#f'), nameInput=document.querySelector('#name'), cpf=document.querySelector('#cpf'), pay=document.querySelector('#pay'), pix=document.querySelector('#pix'),qr=document.querySelector('#qr'),code=document.querySelector('#code'),msg=document.querySelector('#msg'),statusEl=document.querySelector('#status'),whatsBtn=document.querySelector('#whatsBtn'),simulateBtn=document.querySelector('#simulateBtn'); let whatsappUrl='',devMode=false,currentTransactionId='';
+  function trackMetaPurchase(transactionId){
+  const key='meta_purchase_'+transactionId;
+
+  if(sessionStorage.getItem(key)) return;
+
+  if(typeof fbq === 'function'){
+    fbq('track', 'Purchase', {
+      value: 19.90,
+      currency: 'BRL'
+    });
+
+    sessionStorage.setItem(key,'1');
+  } else {
+    setTimeout(()=>trackMetaPurchase(transactionId),500);
+  }
+}fetch('/api/config').then(r=>r.json()).then(c=>{whatsappUrl=c.whatsappUrl||'';devMode=!!c.devMode;if(devMode) simulateBtn.style.display='block'}).catch(()=>{});
 cpf.oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');e.target.value=v}
 function qrs(v){if(!v)return'';if(v.startsWith('data:image')||v.startsWith('http'))return v;if(v.startsWith('base64:'))v=v.slice(7);return'data:image/png;base64,'+v}
 f.onsubmit=async e=>{e.preventDefault();pay.disabled=true;pay.textContent='GERANDO PIX...';msg.textContent='';try{let r=await fetch('/api/create-pix',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({payerName:nameInput.value.trim(),payerDocument:cpf.value.replace(/\D/g,'')})});let d=await r.json();if(!r.ok||!d.success)throw Error(d.error||'Não foi possível gerar o PIX.');qr.src=qrs(d.qrcodeUrl);code.value=d.copyPaste||'';pix.classList.add('show');pix.classList.add('show');
@@ -121,8 +137,25 @@ simulateBtn.onclick=async()=>{
     msg.className='msg err';
   }
 };
+function trackMetaPurchase(transactionId){
+  const key='meta_purchase_'+transactionId;
 
-function poll(id){
+  if(sessionStorage.getItem(key)) return;
+
+  if(typeof fbq === 'function'){
+    fbq('track', 'Purchase', {
+      value: 19.90,
+      currency: 'BRL'
+    });
+
+    sessionStorage.setItem(key,'1');
+  } else {
+    setTimeout(()=>trackMetaPurchase(transactionId),500);
+  }
+}
+
+  
+  function poll(id){
   let n=0;
   const check=async()=>{
     n++;
@@ -131,12 +164,7 @@ function poll(id){
       const d=await r.json();
       if(d.status==='COMPLETO'){
 
-        if (typeof fbq === 'function') {
-  fbq('track', 'Purchase', {
-    value: 19.90,
-    currency: 'BRL'
-  });
-}
+     trackMetaPurchase(id);
         statusEl.textContent='Pagamento confirmado ✅';
         statusEl.className='msg ok';
         msg.textContent='Pagamento aprovado. Seu acesso foi liberado.';
