@@ -174,6 +174,10 @@ app.post('/api/webhook', (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(require('path').join(__dirname, 'public', 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Checkout rodando em http://localhost:${PORT}`);
 });
