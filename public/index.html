@@ -123,6 +123,13 @@ function poll(id){
       const r=await fetch('/api/status/'+encodeURIComponent(id));
       const d=await r.json();
       if(d.status==='COMPLETO'){
+
+        if (typeof fbq === 'function') {
+  fbq('track', 'Purchase', {
+    value: 19.90,
+    currency: 'BRL'
+  });
+}
         statusEl.textContent='Pagamento confirmado ✅';
         statusEl.className='msg ok';
         msg.textContent='Pagamento aprovado. Seu acesso foi liberado.';
